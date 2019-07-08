@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   get 'teams/:id' => 'teams#show'
   get 'trainers' => 'trainers#index'
   get 'trainers/:id' => 'trainers#show'
-  get 'pokemon' => 'pokemons#index'
-  get 'pokemon/:id' => 'pokemons#show'
+  get 'pokemon' => 'pokemon#index'
+  get 'pokemon/:id' => 'pokemon#show'
 end
