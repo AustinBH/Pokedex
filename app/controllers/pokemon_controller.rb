@@ -1,7 +1,7 @@
 class PokemonController < ApplicationController
   def index
     pokemons = Pokemon.all
-    render json: pokemons
+    render json: pokemons, exclude: [:created_at, :updated_at]
   end
 
   def show
