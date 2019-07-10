@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get 'pokemon/:id' => 'pokemon#show'
   post 'pokemon_teams' => 'pokemon_teams#create'
   delete 'pokemon_teams' => 'pokemon_teams#destroy'
+  get 'pokemon?_filter=types' => 'pokemon#search'
 end
