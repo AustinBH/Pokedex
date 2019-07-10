@@ -8,4 +8,13 @@ class TrainersController < ApplicationController
     trainer = Trainer.find(params[:id])
     render json: trainer, :include => {:teams => {:include => [:pokemon], :except => [:created_at, :updated_at]} }, :only => [:username, :id]
   end
+
+  def create
+    trainer = Trainer.new(username: params[:username])
+    if trainer.save
+      render json: trainer
+    else
+      render json: {message: 'Error saving trainer name'}
+    end
+  end
 end

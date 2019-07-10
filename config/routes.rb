@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   delete 'teams/:id' => 'teams#destroy'
   get 'trainers' => 'trainers#index'
   get 'trainers/:id' => 'trainers#show'
+  post 'trainers' => 'trainers#create'
   get 'pokemon' => 'pokemon#index'
   get 'pokemon/:id' => 'pokemon#show'
   post 'pokemon_teams' => 'pokemon_teams#create'
