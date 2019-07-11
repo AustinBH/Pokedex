@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 image_url = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/"
 
-counter = 101
-while counter <= 151 do
+counter = 201
+while counter <= 251 do
   species_request = PokeApi.get(pokemon_species: counter)
   pokemon_request = PokeApi.get(pokemon: counter)
   if counter == 29
@@ -29,7 +29,12 @@ while counter <= 151 do
     102, 103, 104, 105, 108, 113, 115, 118, 119, 120, 121,
     122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132,
     133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143,
-    147, 148, 149]
+    147, 148, 149, 163, 164, 165, 166, 167, 168, 169, 170,
+    171, 172, 173, 174, 177, 178, 179, 180, 181, 182, 185,
+    186, 187, 188, 189, 190, 196, 197, 198, 199, 200, 204,
+    205, 206, 209, 210, 212, 214, 215, 222, 223, 224, 225,
+    226, 227, 228, 229, 233, 235, 238, 239, 240, 241, 242,
+    246, 247, 248]
   if japanese_descriptions.include?(counter)
     description = species_request.flavor_text_entries[2].flavor_text
   else
