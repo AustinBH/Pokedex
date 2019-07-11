@@ -7,8 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 image_url = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/"
 
-counter = 201
-while counter <= 251 do
+# You need to iterate through 806 Pokemon. The PokeApi can only take 100
+# requests per minute so break it up into chunks.
+
+counter = 421
+while counter <= 493 do
   species_request = PokeApi.get(pokemon_species: counter)
   pokemon_request = PokeApi.get(pokemon: counter)
   if counter == 29
@@ -20,6 +23,8 @@ while counter <= 251 do
   end
   pokedex_number = counter
 
+  # This is set to filter all of the pokemon info from the api that have
+  # german descriptions before japanese ones.
   japanese_descriptions = [
     10, 11, 12, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28,
     35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
@@ -34,7 +39,15 @@ while counter <= 251 do
     186, 187, 188, 189, 190, 196, 197, 198, 199, 200, 204,
     205, 206, 209, 210, 212, 214, 215, 222, 223, 224, 225,
     226, 227, 228, 229, 233, 235, 238, 239, 240, 241, 242,
-    246, 247, 248]
+    246, 247, 248, 278, 279, 283, 284, 296, 297, 299, 302,
+    303, 309, 310, 318, 319, 320, 321, 324, 327, 328, 329,
+    330, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348,
+    349, 350, 351, 352, 353, 354, 357, 359, 361, 362, 366,
+    367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 408,
+    409, 410, 411, 422, 423, 424, 425, 426, 427, 428, 429,
+    430, 439, 440, 443, 444, 445, 446, 447, 448, 456, 457,
+    458, 461, 462, 463, 466, 467, 470, 471, 474, 476, 478]
+    
   if japanese_descriptions.include?(counter)
     description = species_request.flavor_text_entries[2].flavor_text
   else
