@@ -70,6 +70,23 @@ while counter <= 807 do
     description = species_request.flavor_text_entries[1].flavor_text
   end
 
+
+  if counter < 152
+    generation = "1"
+  elsif counter < 252 && counter > 151
+    generation = "2"
+  elsif counter < 387 && counter > 251
+    generation = "3"
+  elsif counter < 494 && counter > 386
+    generation = "4"
+  elsif counter < 650 && counter > 493
+    generation = "5"
+  elsif counter < 722 && counter > 649
+    generation = "6"
+  else
+    generation = "7"
+  end
+
   pokemon_type = ''
   PokeApi.get(pokemon: counter).types.each do |type_collection|
     pokemon_type << " #{type_collection.type.name}"
@@ -86,7 +103,7 @@ while counter <= 807 do
     img_url = "#{image_url}#{counter}.png"
   end
 
-  Pokemon.create(name: name, pokedex_number: pokedex_number, description: description, pokemon_type: pokemon_type, height: height, weight: weight, img_url: img_url)
+  Pokemon.create(name: name, pokedex_number: pokedex_number, description: description, pokemon_type: pokemon_type, height: height, weight: weight, generation: generation, img_url: img_url)
   counter += 1
 end
 
