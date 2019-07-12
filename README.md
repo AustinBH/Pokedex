@@ -19,6 +19,6 @@ We are currently in the process of deploying our API and will appropriately upda
     - All of the routes for our API are available to view pokemon specific information.
     - You can also view information about individual pokemon.
     - We do support 3 different filtering options at this time.
-      -- Pokemon Type
-      -- Pokemon Name
-      -- Pokemon Generation (I, II, III, etc.)
+      - Pokemon Type
+      - Pokemon Name
+      - Pokemon Generation (I, II, III, etc.)
