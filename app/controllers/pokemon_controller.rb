@@ -7,6 +7,7 @@ class PokemonController < ApplicationController
         types.include?(params[:type])
       end
       if all_pokemon.length > 0
+        all_pokemon = all_pokemon.sort {|a, b| a.pokedex_number <=> b.pokedex_number}
         render json: all_pokemon, exclude: [:created_at, :updated_at]
       else
         render json: {message: "There are no pokemon of #{params[:type]} type."}
@@ -16,6 +17,7 @@ class PokemonController < ApplicationController
         pokemon.name.downcase.include?(params[:name])
       end
       if all_pokemon.length > 0
+        all_pokemon = all_pokemon.sort {|a, b| a.pokedex_number <=> b.pokedex_number}
         render json: all_pokemon, exclude: [:created_at, :updated_at]
       else
         render json: {message: "There are no pokemon with #{params[:name]} in their name."}
@@ -37,6 +39,7 @@ class PokemonController < ApplicationController
         all_pokemon = pokemons.select do |pokemon|
           pokemon.id < 494 && pokemon.id > 386
         end
+        all_pokemon
       elsif params[:generation] == '5'
         all_pokemon = pokemons.select do |pokemon|
           pokemon.id < 650 && pokemon.id > 493
@@ -51,12 +54,13 @@ class PokemonController < ApplicationController
         end
       end
       if all_pokemon
+        all_pokemon = all_pokemon.sort {|a, b| a.pokedex_number <=> b.pokedex_number}
         render json: all_pokemon, exclude: [:created_at, :updated_at]
       else
         render json: {message: "#{params[:generation]} is not a valid generation."}
       end
     else
-      all_pokemon = pokemons
+      all_pokemon = pokemons.sort {|a, b| a.pokedex_number <=> b.pokedex_number}
       render json: all_pokemon, exclude: [:created_at, :updated_at]
     end
   end

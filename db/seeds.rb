@@ -94,13 +94,13 @@ end
 #   username = Faker::Name.first_name
 #   Trainer.create(username: username)
 # end
-
+#
 # 10.times do
 #   name = Faker::JapaneseMedia::DragonBall.character
 #   trainer = Trainer.all.sample
 #   Team.create(name: name, trainer: trainer)
 # end
-
+#
 # 30.times do
 #   team = Team.all.sample
 #   pokemon = Pokemon.all.sample
