@@ -47,7 +47,7 @@ class PokemonController < ApplicationController
         end
       elsif params[:generation] == '7'
         all_pokemon = pokemons.select do |pokemon|
-          pokemon.id > 722
+          pokemon.id > 721
         end
       end
       if all_pokemon
