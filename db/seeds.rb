@@ -90,19 +90,19 @@ while counter <= 807 do
   counter += 1
 end
 
-5.times do
-  username = Faker::Name.first_name
-  Trainer.create(username: username)
-end
+# 5.times do
+#   username = Faker::Name.first_name
+#   Trainer.create(username: username)
+# end
 
-10.times do
-  name = Faker::JapaneseMedia::DragonBall.character
-  trainer = Trainer.all.sample
-  Team.create(name: name, trainer: trainer)
-end
+# 10.times do
+#   name = Faker::JapaneseMedia::DragonBall.character
+#   trainer = Trainer.all.sample
+#   Team.create(name: name, trainer: trainer)
+# end
 
-30.times do
-  team = Team.all.sample
-  pokemon = Pokemon.all.sample
-  PokemonTeam.create(team: team, pokemon: pokemon)
-end
+# 30.times do
+#   team = Team.all.sample
+#   pokemon = Pokemon.all.sample
+#   PokemonTeam.create(team: team, pokemon: pokemon)
+# end
