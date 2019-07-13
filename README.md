@@ -39,7 +39,9 @@
        - This does include multi type pokemon so a fire and flying type will be displayed if you search fire or flying
      - The Generation filter will display all pokemon from that generation
      - Information
-       - Our /pokemon route will display the name, pokedex number and an image url for that pokemon
+       - Name
+       - Pokedex Number
+       - Image
   * Specific Pokemon
     - Example Route
       - https://pokedex-yeet.herokuapp.com/pokemon/1
