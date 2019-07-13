@@ -1,7 +1,5 @@
 # Our Pokedex API
 
-We are currently in the process of deploying our API and will appropriately update this once we have done so.
-
 ## Database
 
   * Setup
@@ -22,3 +20,38 @@ We are currently in the process of deploying our API and will appropriately upda
       - Pokemon Type
       - Pokemon Name
       - Pokemon Generation (I, II, III, etc.)
+      
+  * This API can currently be accessed [here](https://pokedex-yeet.herokuapp.com)
+  
+## Live Routes
+
+   * Pokemon
+     - Example Route
+       - https://pokedex-yeet.herokuapp.com/pokemon
+     - Filter formatting
+       - You will need to prepend the following to the above example route
+         - ?name=insertNameHere
+         - ?type=insertTypeHere
+         - ?generation=insertGenerationHere
+     - The name filter will display pokemon with a name that includes the string that you pass in
+       - For example, charm will return both charmander and charmeleon
+     - The type filter will display pokemon that have a matching type
+       - This does include multi type pokemon so a fire and flying type will be displayed if you search fire or flying
+     - The Generation filter will display all pokemon from that generation
+     - Information
+       - Our /pokemon route will display the name, pokedex number and an image url for that pokemon
+  * Specific Pokemon
+    - Example Route
+      - https://pokedex-yeet.herokuapp.com/pokemon/1
+      - This route will return all of the information for the pokemon bulbasaur
+    - Information
+      - Here we display all of a pokemon's information
+        - Name
+        - Pokedex Number
+        - Description about the pokemon
+        - Their type(s)
+        - Height
+        - Weight
+        - Image
+        - Generation
+  
