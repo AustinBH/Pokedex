@@ -9,7 +9,7 @@
     - The API supports 100 requests per minute so we recommend seeding 50-75 pokemon at one time.
     
    * Active Version
-    - Once we have deployed our version of the API, we will be sure to include a link to it here.
+    - Our API can be found here: https://pokedex-yeet.herokuapp.com
 
 ## Using the API
   
