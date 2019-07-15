@@ -10,7 +10,7 @@ require_relative '../environment'
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'austinbh.github.io', 'pokedex-yeet.herokuapp.com', 'localhost:3000'
+    origins 'austinbh.github.io', 'pokedex-yeet.herokuapp.com'
 
     resource '*',
       headers: :any,
