@@ -14,6 +14,7 @@ counter = 751
 while counter <= 807 do
   species_request = PokeApi.get(pokemon_species: counter)
   pokemon_request = PokeApi.get(pokemon: counter)
+  evolution_request = PokeApi.get(evolution_chain: counter)
   if counter == 29
     name = 'Nidoran ♀'
   elsif counter == 32
@@ -69,6 +70,8 @@ while counter <= 807 do
   else
     description = species_request.flavor_text_entries[1].flavor_text
   end
+
+  evolution_tree = {evolves_to: [{name: evolution_request.chain.evolves_to[0].species.name, }, {name: evolution_request.evolves_to[0].evolves_to[0].species.name}]}
 
 
   if counter < 152
