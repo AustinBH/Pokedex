@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'trainers' => 'trainers#index'
   get 'trainers/:id' => 'trainers#show'
   post 'trainers' => 'trainers#create'
+  delete 'trainers/:id' => 'trainers#destroy'
   get 'pokemon' => 'pokemon#index'
   get 'pokemon/:id' => 'pokemon#show'
   post 'pokemon_teams' => 'pokemon_teams#create'
