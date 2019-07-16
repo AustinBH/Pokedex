@@ -14,7 +14,7 @@
     - The API supports 100 requests per minute so we recommend seeding 50-75 pokemon at one time.
     
    * Active Version
-    - Our API can be found here: https://pokedex-yeet.herokuapp.com
+    - Our API can be found here: https://pokedex-yeet.herokuapp.com/pokemon
 
 ## Using the API
   
@@ -26,7 +26,7 @@
       - Pokemon Name
       - Pokemon Generation (I, II, III, etc.)
       
-  * This API can currently be accessed [here](https://pokedex-yeet.herokuapp.com)
+  * This API can currently be accessed [here](https://pokedex-yeet.herokuapp.com/pokemon)
   
 ## Live Routes
 
