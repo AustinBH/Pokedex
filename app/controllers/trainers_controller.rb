@@ -17,4 +17,9 @@ class TrainersController < ApplicationController
       render json: {message: 'Error saving trainer name'}
     end
   end
+
+  def destroy
+    trainer = Trainer.find(params[:id])
+    trainer.delete
+  end
 end
