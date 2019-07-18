@@ -10,11 +10,12 @@ image_url = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/"
 # You need to iterate through 806 Pokemon. The PokeApi can only take 100
 # requests per minute so break it up into chunks.
 
-counter = 43
-while counter <= 45 do
+counter = 290
+while counter <= 290 do
   # species_request = PokeApi.get(pokemon_species: counter)
   # pokemon_request = PokeApi.get(pokemon: counter)
-  evolution_request = PokeApi.get(evolution_chain: 18)
+  evolution_request = PokeApi.get(evolution_chain: 144)
+
   # if counter == 29
   #   name = 'Nidoran ♀'
   # elsif counter == 32
@@ -73,7 +74,7 @@ while counter <= 45 do
   #
   specific_pokemon = Pokemon.find(counter)
 
-  if evolution_request.chain.evolves_to[0].species.name == specific_pokemon.name.downcase
+  if evolution_request.chain.evolves_to[0] && evolution_request.chain.evolves_to[0].species.name == specific_pokemon.name.downcase
     previous_pokemon = Pokemon.find(counter-1)
     evolution_tree = {evolves_into: [
       {name: evolution_request.chain.evolves_to[0].evolves_to[0].species.name,
@@ -86,7 +87,7 @@ while counter <= 45 do
         trigger: evolution_request.chain.evolves_to[0].evolution_details[0].trigger.name,
         min_level: evolution_request.chain.evolves_to[0].evolution_details[0].min_level
         }]}
-  elsif evolution_request.chain.evolves_to[0].evolves_to[0].species.name == specific_pokemon.name.downcase
+  elsif evolution_request.chain.evolves_to[0].evolves_to[0] && evolution_request.chain.evolves_to[0].evolves_to[0].species.name == specific_pokemon.name.downcase
     previous_pokemon = Pokemon.find(counter-1)
     earliest_pokemon = Pokemon.find(counter-2)
     evolution_tree = {evolves_into: [],
@@ -101,16 +102,20 @@ while counter <= 45 do
         }
       ]}
   else
-    evolution_tree = {evolves_into: [
-      {name: evolution_request.chain.evolves_to[0].species.name,
-      trigger: evolution_request.chain.evolves_to[0].evolution_details[0].trigger.name,
-      min_level: evolution_request.chain.evolves_to[0].evolution_details[0].min_level},
-      {name: evolution_request.chain.evolves_to[0].evolves_to[0].species.name,
-      trigger: evolution_request.chain.evolves_to[0].evolves_to[0].evolution_details[0].trigger.name,
-      min_level: evolution_request.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level}
-      ],
-      evolves_from: [
-      ]}
+    if evolution_request.chain.evolves_to[0]
+      evolution_tree = {evolves_into: [
+        {name: evolution_request.chain.evolves_to[0].species.name,
+        trigger: evolution_request.chain.evolves_to[0].evolution_details[0].trigger.name,
+        min_level: evolution_request.chain.evolves_to[0].evolution_details[0].min_level},
+        {name: evolution_request.chain.evolves_to[0].evolves_to[0].species.name,
+        trigger: evolution_request.chain.evolves_to[0].evolves_to[0].evolution_details[0].trigger.name,
+        min_level: evolution_request.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level}
+        ],
+        evolves_from: [
+        ]}
+    else
+      evolution_tree = {evolves_into: [], evolves_from: []}
+    end
   end
 
   #
