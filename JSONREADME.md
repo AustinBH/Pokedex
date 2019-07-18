@@ -10,10 +10,6 @@ Database
     - Because we are seeding using the PokeAPI and the Poke API V2 Gem you will need to manually change the while loop in our seeds file.
     - The API supports 100 requests per minute so we recommend seeding 50-75 pokemon at one time.
 
-   * Active Version
-    - Our API can be found here
-      - https://pokedex-yeet.herokuapp.com
-
 Using the API
 
   * Routes
