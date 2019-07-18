@@ -1,4 +1,4 @@
-class PokemonTeamsController < ApplicationController
+class V1::PokemonTeamsController < ApplicationController
   def create
     pokemon_team = PokemonTeam.create(team_id: params[:team_id], pokemon_id: params[:pokemon_id])
     render json: pokemon_team

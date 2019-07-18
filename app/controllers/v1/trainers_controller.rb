@@ -1,4 +1,4 @@
-class TrainersController < ApplicationController
+class V1::TrainersController < ApplicationController
   def index
     trainers = Trainer.all
     render json: trainers, :include => {:pokemon => {:except => [:created_at, :updated_at]} }, :only => [:username, :id]
@@ -20,6 +20,7 @@ class TrainersController < ApplicationController
 
   def destroy
     trainer = Trainer.find(params[:id])
+    trainer.teams.destroy_all
     trainer.delete
   end
 end

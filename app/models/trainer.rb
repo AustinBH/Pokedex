@@ -4,4 +4,5 @@ class Trainer < ApplicationRecord
   has_many :pokemon, through: :pokemon_teams
 
   validates :username, uniqueness: true
+  validates :username, presence: true
 end
