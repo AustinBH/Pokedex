@@ -14,7 +14,7 @@
     - The API supports 100 requests per minute so we recommend seeding 50-75 pokemon at one time.
     
    * Active Version
-    - Our API can be found here: https://pokedex-yeet.herokuapp.com/pokemon
+    - Our API can be found here: https://pokedex-yeet.herokuapp.com/
 
 ## Using the API
   
@@ -32,7 +32,7 @@
 
    * Pokemon
      - Example Route
-       - https://pokedex-yeet.herokuapp.com/pokemon
+       - https://pokedex-yeet.herokuapp.com/v1/pokemon
      - Filter formatting
        - You will need to prepend the following to the above example route
          - ?name=insertNameHere
@@ -49,7 +49,7 @@
        - Image
   * Specific Pokemon
     - Example Route
-      - https://pokedex-yeet.herokuapp.com/pokemon/1
+      - https://pokedex-yeet.herokuapp.com/v1/pokemon/1
       - This route will return all of the information for the pokemon bulbasaur
     - Information
       - Here we display all of a pokemon's information
