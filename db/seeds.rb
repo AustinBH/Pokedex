@@ -10,12 +10,11 @@ image_url = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/"
 # You need to iterate through 806 Pokemon. The PokeApi can only take 100
 # requests per minute so break it up into chunks.
 
-counter = 290
-while counter <= 290 do
+counter = 1
+while counter <= 807 do
   # species_request = PokeApi.get(pokemon_species: counter)
   # pokemon_request = PokeApi.get(pokemon: counter)
-  evolution_request = PokeApi.get(evolution_chain: 144)
-
+  # evolution_request = PokeApi.get(evolution_chain: 105)
   # if counter == 29
   #   name = 'Nidoran ♀'
   # elsif counter == 32
@@ -47,76 +46,93 @@ while counter <= 290 do
   #   349, 350, 351, 352, 353, 354, 357, 359, 361, 362, 366,
   #   367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 408,
   #   409, 410, 411, 422, 423, 424, 425, 426, 427, 428, 429,
-  #   430, 439, 440, 443, 444, 445, 446, 447, 448, 456, 457,
-  #   458, 461, 462, 463, 466, 467, 470, 471, 474, 476, 478,
-  #   506, 507, 508, 524, 525, 526, 546, 547, 548, 549, 550,
-  #   551, 552, 553, 559, 560, 564, 565, 566, 567, 568, 569,
-  #   570, 571, 572, 573, 582, 583, 584, 587, 592, 593, 594,
-  #   605, 606, 619, 620, 621, 622, 623, 624, 625, 627, 628,
-  #   629, 630, 636, 637, 661, 662, 663, 667, 668, 669, 670,
-  #   671, 674, 675, 676, 686, 687, 690, 691, 692, 693, 696,
-  #   697, 698, 699, 700, 701, 702, 703, 704, 705, 706, 707,
-  #   708, 709, 714, 715, 718, 722, 723, 724, 725, 726, 727,
-  #   728, 729, 730, 731, 732, 733, 734, 735, 736, 737, 738,
-  #   739, 740, 741, 742, 743, 744, 745, 746, 747, 748, 749,
-  #   750, 751, 752, 753, 754, 755, 756, 757, 758, 759, 760,
-  #   761, 762, 763, 764, 765, 766, 767, 768, 769, 770, 771,
-  #   772, 773, 774, 775, 776, 777, 778, 779, 780, 781, 782,
-  #   783, 784, 785, 786, 787, 788, 789, 790, 791, 792, 793,
-  #   794, 795, 796, 797, 798, 799, 800, 801, 802, 803, 804,
-  #   805, 806, 807]
-  #
+  #   430, 438, 439, 440, 443, 444, 445, 446, 447, 448, 456,
+  #   457, 458, 461, 462, 463, 466, 467, 470, 471, 474, 476,
+  #   478, 506, 507, 508, 524, 525, 526, 546, 547, 548, 549,
+  #   550, 551, 552, 553, 559, 560, 564, 565, 566, 567, 568,
+  #   569, 570, 571, 572, 573, 582, 583, 584, 587, 592, 593,
+  #   594, 605, 606, 619, 620, 621, 622, 623, 624, 625, 627,
+  #   628, 629, 630, 636, 637, 661, 662, 663, 667, 668, 669,
+  #   670, 671, 674, 675, 676, 686, 687, 690, 691, 692, 693,
+  #   696, 697, 698, 699, 700, 701, 702, 703, 704, 705, 706,
+  #   707, 708, 709, 714, 715, 718, 722, 723, 724, 725, 726,
+  #   727, 728, 729, 730, 731, 732, 733, 734, 735, 736, 737,
+  #   738, 739, 740, 741, 742, 743, 744, 745, 746, 747, 748,
+  #   749, 750, 751, 752, 753, 754, 755, 756, 757, 758, 759,
+  #   760, 761, 762, 763, 764, 765, 766, 767, 768, 769, 770,
+  #   771, 772, 773, 774, 775, 776, 777, 778, 779, 780, 781,
+  #   782, 783, 784, 785, 786, 787, 788, 789, 790, 791, 792,
+  #   793, 794, 795, 796, 797, 798, 799, 800, 801, 802, 803,
+  #   804, 805, 806, 807]
+  
   # if japanese_descriptions.include?(counter)
   #   description = species_request.flavor_text_entries[2].flavor_text
   # else
   #   description = species_request.flavor_text_entries[1].flavor_text
   # end
-  #
+
   specific_pokemon = Pokemon.find(counter)
 
-  if evolution_request.chain.evolves_to[0] && evolution_request.chain.evolves_to[0].species.name == specific_pokemon.name.downcase
-    previous_pokemon = Pokemon.find(counter-1)
-    evolution_tree = {evolves_into: [
-      {name: evolution_request.chain.evolves_to[0].evolves_to[0].species.name,
-      trigger: evolution_request.chain.evolves_to[0].evolves_to[0].evolution_details[0].trigger.name,
-      min_level: evolution_request.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level
-      }
-      ],
-      evolves_from: [
-        {name: previous_pokemon.name,
-        trigger: evolution_request.chain.evolves_to[0].evolution_details[0].trigger.name,
-        min_level: evolution_request.chain.evolves_to[0].evolution_details[0].min_level
-        }]}
-  elsif evolution_request.chain.evolves_to[0].evolves_to[0] && evolution_request.chain.evolves_to[0].evolves_to[0].species.name == specific_pokemon.name.downcase
-    previous_pokemon = Pokemon.find(counter-1)
-    earliest_pokemon = Pokemon.find(counter-2)
-    evolution_tree = {evolves_into: [],
-      evolves_from: [
-        {name: previous_pokemon.name,
-        trigger: evolution_request.chain.evolves_to[0].evolves_to[0].evolution_details[0].trigger.name,
-        min_level: evolution_request.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level
-        },
-        {name: earliest_pokemon.name,
-        trigger: evolution_request.chain.evolves_to[0].evolution_details[0].trigger.name,
-        min_level: evolution_request.chain.evolves_to[0].evolution_details[0].min_level
-        }
-      ]}
-  else
-    if evolution_request.chain.evolves_to[0]
-      evolution_tree = {evolves_into: [
-        {name: evolution_request.chain.evolves_to[0].species.name,
-        trigger: evolution_request.chain.evolves_to[0].evolution_details[0].trigger.name,
-        min_level: evolution_request.chain.evolves_to[0].evolution_details[0].min_level},
-        {name: evolution_request.chain.evolves_to[0].evolves_to[0].species.name,
-        trigger: evolution_request.chain.evolves_to[0].evolves_to[0].evolution_details[0].trigger.name,
-        min_level: evolution_request.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level}
-        ],
-        evolves_from: [
-        ]}
-    else
-      evolution_tree = {evolves_into: [], evolves_from: []}
+
+
+  puts specific_pokemon.evolution_tree["evolves_into"]
+
+  if specific_pokemon.evolution_tree["evolves_into"].count > 0
+    specific_pokemon.evolution_tree["evolves_into"].map do |pokemon|
+      pokemon["name"] = pokemon["name"].downcase
     end
   end
+  if specific_pokemon.evolution_tree["evolves_from"].count > 0
+    specific_pokemon.evolution_tree["evolves_from"].map do |pokemon|
+      pokemon["name"] = pokemon["name"].downcase
+    end
+  end
+
+  evolution_tree = specific_pokemon.evolution_tree
+
+  # if evolution_request.chain.evolves_to[0] && evolution_request.chain.evolves_to[0].species.name == specific_pokemon.name.downcase
+  #   previous_pokemon = Pokemon.find(counter-1)
+  #   evolution_tree = {evolves_into: [
+  #     {name: evolution_request.chain.evolves_to[0].evolves_to[0].species.name,
+  #     trigger: evolution_request.chain.evolves_to[0].evolves_to[0].evolution_details[0].trigger.name,
+  #     min_level: evolution_request.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level
+  #     }
+  #     ],
+  #     evolves_from: [
+  #       {name: previous_pokemon.name,
+  #       trigger: evolution_request.chain.evolves_to[0].evolution_details[0].trigger.name,
+  #       min_level: evolution_request.chain.evolves_to[0].evolution_details[0].min_level
+  #       }]}
+  # elsif evolution_request.chain.evolves_to[0].evolves_to[0] && evolution_request.chain.evolves_to[0].evolves_to[0].species.name == specific_pokemon.name.downcase
+  #   previous_pokemon = Pokemon.find(42)
+  #   earliest_pokemon = Pokemon.find(41)
+  #   evolution_tree = {evolves_into: [],
+  #     evolves_from: [
+  #       {name: previous_pokemon.name,
+  #       trigger: evolution_request.chain.evolves_to[0].evolves_to[0].evolution_details[0].trigger.name,
+  #       min_level: evolution_request.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level
+  #       },
+  #       {name: earliest_pokemon.name,
+  #       trigger: evolution_request.chain.evolves_to[0].evolution_details[0].trigger.name,
+  #       min_level: evolution_request.chain.evolves_to[0].evolution_details[0].min_level
+  #       }
+  #     ]}
+  # else
+  #   if evolution_request.chain.evolves_to[0]
+  #     evolution_tree = {evolves_into: [
+  #       {name: evolution_request.chain.evolves_to[0].species.name,
+  #       trigger: evolution_request.chain.evolves_to[0].evolution_details[0].trigger.name,
+  #       min_level: evolution_request.chain.evolves_to[0].evolution_details[0].min_level},
+  #       {name: evolution_request.chain.evolves_to[0].evolves_to[0].species.name,
+  #       trigger: evolution_request.chain.evolves_to[0].evolves_to[0].evolution_details[0].trigger.name,
+  #       min_level: evolution_request.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level}
+  #       ],
+  #       evolves_from: [
+  #       ]}
+  #   else
+  #     evolution_tree = {evolves_into: [], evolves_from: []}
+  #   end
+  # end
 
   #
   #

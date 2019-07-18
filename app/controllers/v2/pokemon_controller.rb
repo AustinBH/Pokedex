@@ -8,7 +8,7 @@ class V2::PokemonController < ApplicationController
       end
       if all_pokemon.length > 0
         all_pokemon = Pokemon.filter_by_pokedex(all_pokemon)
-        render json: all_pokemon, except: [:created_at, :updated_at]
+        render json: all_pokemon, only: [:name, :pokedex_number, :img_url]
       else
         render json: {message: "There are no pokemon of #{params[:type]} type."}
       end
@@ -18,7 +18,7 @@ class V2::PokemonController < ApplicationController
       end
       if all_pokemon.length > 0
         all_pokemon = Pokemon.filter_by_pokedex(all_pokemon)
-        render json: all_pokemon, except: [:created_at, :updated_at]
+        render json: all_pokemon, only: [:name, :pokedex_number, :img_url]
       else
         render json: {message: "There are no pokemon with #{params[:name]} in their name."}
       end
@@ -28,13 +28,13 @@ class V2::PokemonController < ApplicationController
       end
       if all_pokemon
         all_pokemon = Pokemon.filter_by_pokedex(all_pokemon)
-        render json: all_pokemon, except: [:created_at, :updated_at]
+        render json: all_pokemon, only: [:name, :pokedex_number, :img_url]
       else
         render json: {message: "#{params[:generation]} is not a valid generation."}
       end
     else
       all_pokemon = Pokemon.filter_by_pokedex(pokemons)
-      render json: all_pokemon, except: [:created_at, :updated_at]
+      render json: all_pokemon, only: [:name, :pokedex_number, :img_url]
     end
   end
 

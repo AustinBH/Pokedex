@@ -10,10 +10,19 @@ require_relative '../environment'
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins '*'
+    origins 'austinbh.github.io', 'pokedex-yeet.herokuapp.com'
 
-    resource '*',
+    resource '/v1/teams',
       headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+      methods: [:get, :post, :delete]
+    resource '/v1/trainers',
+      headers: :any,
+      methods: [:get, :post, :patch, :delete]
+    resource 'v1/pokemon',
+      headers: :any,
+      methods: :get
+    resource 'v2/pokemon',
+      headers: :any,
+      methods: :get
   end
 end
