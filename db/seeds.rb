@@ -79,12 +79,14 @@ while counter <= 807 do
 
   if specific_pokemon.evolution_tree["evolves_into"].count > 0
     specific_pokemon.evolution_tree["evolves_into"].map do |pokemon|
-      pokemon["name"] = pokemon["name"].downcase
+      singlePokemon = Pokemon.find_by_name(pokemon["name"].capitalize)
+      pokemon["img_url"] = singlePokemon.img_url
     end
   end
   if specific_pokemon.evolution_tree["evolves_from"].count > 0
     specific_pokemon.evolution_tree["evolves_from"].map do |pokemon|
-      pokemon["name"] = pokemon["name"].downcase
+      singlePokemon = Pokemon.find_by_name(pokemon["name"].capitalize)
+      pokemon["img_url"] = singlePokemon.img_url
     end
   end
 
