@@ -10,8 +10,8 @@ image_url = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/"
 # You need to iterate through 806 Pokemon. The PokeApi can only take 100
 # requests per minute so break it up into chunks.
 
-counter = 1
-while counter <= 807 do
+counter = 150
+while counter <= 151 do
   # species_request = PokeApi.get(pokemon_species: counter)
   # pokemon_request = PokeApi.get(pokemon: counter)
   # evolution_request = PokeApi.get(evolution_chain: 105)
@@ -73,24 +73,24 @@ while counter <= 807 do
 
   specific_pokemon = Pokemon.find(counter)
 
-
-
   puts specific_pokemon.evolution_tree["evolves_into"]
 
-  if specific_pokemon.evolution_tree["evolves_into"].count > 0
-    specific_pokemon.evolution_tree["evolves_into"].map do |pokemon|
-      singlePokemon = Pokemon.find_by_name(pokemon["name"].capitalize)
-      pokemon["img_url"] = singlePokemon.img_url
-    end
-  end
-  if specific_pokemon.evolution_tree["evolves_from"].count > 0
-    specific_pokemon.evolution_tree["evolves_from"].map do |pokemon|
-      singlePokemon = Pokemon.find_by_name(pokemon["name"].capitalize)
-      pokemon["img_url"] = singlePokemon.img_url
-    end
-  end
+  evolution_tree = {evolves_into: [], evolves_from: []}
 
-  evolution_tree = specific_pokemon.evolution_tree
+  # if specific_pokemon.evolution_tree["evolves_into"].count > 0
+  #   specific_pokemon.evolution_tree["evolves_into"].map do |pokemon|
+  #     singlePokemon = Pokemon.find_by_name(pokemon["name"].capitalize)
+  #     pokemon["img_url"] = singlePokemon.img_url
+  #   end
+  # end
+  # if specific_pokemon.evolution_tree["evolves_from"].count > 0
+  #   specific_pokemon.evolution_tree["evolves_from"].map do |pokemon|
+  #     singlePokemon = Pokemon.find_by_name(pokemon["name"].capitalize)
+  #     pokemon["img_url"] = singlePokemon.img_url
+  #   end
+  # end
+
+  # evolution_tree = specific_pokemon.evolution_tree
 
   # if evolution_request.chain.evolves_to[0] && evolution_request.chain.evolves_to[0].species.name == specific_pokemon.name.downcase
   #   previous_pokemon = Pokemon.find(counter-1)
