@@ -10,12 +10,17 @@ class V1::TeamsController < ApplicationController
   end
 
   def create
-    team = Team.create(name: params[:name], trainer_id: params[:trainer_id])
+    team = Team.create(team_params)
     render json: team, :include => {:trainer => {:except => [:created_at, :updated_at]}}, :only => [:name, :id]
   end
 
   def destroy
     team = Team.find(params[:id])
     team.delete
+  end
+
+  private
+  def team_params
+    params.require(:team).permit(:name, :trainer_id)
   end
 end

@@ -42,5 +42,4 @@ class V1::PokemonController < ApplicationController
     pokemon = Pokemon.find(params[:id])
     render json: pokemon, except: [:created_at, :updated_at, :evolution_tree]
   end
-
 end
