@@ -2,8 +2,8 @@
 
  * This pokedex api was created to serve data that is used for a javascript project.
  * That project can be found at the links below
-   - [Github Repository](https://github.com/AustinBH/Pokedex-frontend)
-   - [Website](https://austinbh.github.io/Pokedex-frontend/)
+   - [Github Repository](https://github.com/AustinBH/Pokedex-Teams)
+   - [Website](https://austinbh.github.io/Pokedex-Teams/)
 
 ## Database
 
