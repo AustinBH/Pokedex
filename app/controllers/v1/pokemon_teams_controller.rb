@@ -11,6 +11,6 @@ class V1::PokemonTeamsController < ApplicationController
 
   private
   def pokemon_teams_params
-    params.require(:pokemon_team).permt(:team_id, :pokemon_id)
+    params.require(:pokemon_team).permit(:team_id, :pokemon_id)
   end
 end
